@@ -333,3 +333,430 @@ expect-debian-13-amd64:
 
     # Shutdown the VM
     expect eof
+ 'Sun-$Revision: 30.15 $'
+ '
+Copyright 1992-2012 AUTHORS.
+See the LICENSE file for license information.
+'
+
+
+ '-- Module body'
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> () From: ( | {
+         'Category: platform\x7fCategory: graphical interface\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         graphicsDependentGlobals* = bootstrap stub -> 'globals' -> 'quartzGlobals' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> () From: ( | {
+         'Category: platform\x7fCategory: host and filesystem\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         host = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'host' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals host.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'host' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: publicReadPrivateWrite'
+        
+         configuration* <- bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'host' -> 'configuration' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals host configuration.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'models' -> 'macs' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         unknown = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'models' -> 'macs' -> 'unknown' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms models macs unknown.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'host' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: publicReadPrivateWrite'
+        
+         model <- bootstrap stub -> 'globals' -> 'platforms' -> 'models' -> 'macs' -> 'unknown' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'osFamilies' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         sunOS = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'osFamilies' -> 'sunOS' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms osFamilies sunOS.
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'host' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: publicReadPrivateWrite'
+        
+         os <- bootstrap stub -> 'globals' -> 'platforms' -> 'osFamilies' -> 'sunOS' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> () From: ( | {
+         'Category: platform\x7fCategory: host and filesystem\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         host = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'host' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits host.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'host' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'host' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot'
+        
+         hosts = bootstrap define: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () ToBe: bootstrap addSlotsTo: (
+             bootstrap remove: 'directory' From:
+             bootstrap remove: 'fileInTimeString' From:
+             bootstrap remove: 'myComment' From:
+             bootstrap remove: 'postFileIn' From:
+             bootstrap remove: 'revision' From:
+             bootstrap remove: 'subpartNames' From:
+             globals modules init copy ) From: bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals modules hosts.
+
+CopyDowns:
+globals modules init. copy 
+SlotsToOmit: directory fileInTimeString myComment postFileIn revision subpartNames.
+
+\x7fIsComplete: '.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         directory <- 'core'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: InitializeToExpression: (_CurrentTimeString)\x7fVisibility: public'
+        
+         fileInTimeString <- _CurrentTimeString.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot'
+        
+         myComment <- 'This module defines various attributes of machine-specific nature \"
+            \" Redone by DMU 7/16/90 \"
+
+            \" A platform is model of a computer.'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot'
+        
+         postFileIn = ( |
+            | 
+            host setOSDependentGlobals.
+            "host setGraphicsDependentGlobals is set in modules allGraphcis"
+            snapshotAction addPostReadMessage: (
+              message copy receiver: host Selector: 'setOSDependentGlobals').
+            resend.postFileIn).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         revision <- 'Sun-$Revision: 30.15 $'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'modules' -> 'hosts' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: private'
+        
+         subpartNames <- 'quartzHosts
+'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> () From: ( | {
+         'Category: platform\x7fCategory: os\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         unixGlobals = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'unixGlobals' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals unixGlobals.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> () From: ( | {
+         'Category: platform\x7fCategory: os\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         osDependentGlobals* = bootstrap stub -> 'globals' -> 'unixGlobals' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> () From: ( | {
+         'Category: platform\x7fCategory: host and filesystem\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         platforms = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         cpuFamilies = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpuFamilies.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mc68xxx = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpuFamilies mc68xxx.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mc68xxx'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'platforms' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         cpuFamily = bootstrap setObjectAnnotationOf: bootstrap stub -> 'traits' -> 'platforms' -> 'cpuFamily' -> () From: ( |
+             {} = 'ModuleInfo: Creator: traits platforms cpuFamily.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'platforms' -> 'cpuFamily' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mips = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mips' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpuFamilies mips.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mips' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mips'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mips' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'platforms' -> 'cpuFamily' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         sparc = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'sparc' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpuFamilies sparc.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'sparc' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'sparc'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'sparc' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: private'
+        
+         parent* = bootstrap stub -> 'traits' -> 'platforms' -> 'cpuFamily' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         cpus = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mc68xxxs\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mc68000 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68000' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus mc68000.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mc68000'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mc68xxxs\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mc68010 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68010' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus mc68010.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68010' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68010' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mc68010'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mc68xxxs\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mc68020 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68020' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus mc68020.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68020' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68020' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mc68020'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mc68xxxs\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mc68030 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68030' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus mc68030.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68030' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mc68xxx' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'mc68030' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'mc68030'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mips\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         r2000 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r2000' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus r2000.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r2000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mips' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r2000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'r2000'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: mips\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         r3000 = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r3000' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus r3000.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r3000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'mips' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'r3000' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'r3000'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> () From: ( | {
+         'Category: sparcs\x7fComment: should be more of these for, i.e. different size reg files
+	 I just dont know what they are\x7fModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         sparc = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'sparc' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms cpus sparc.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'cpus' -> 'sparc' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         family* = bootstrap stub -> 'globals' -> 'platforms' -> 'cpuFamilies' -> 'sparc' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         modelFamilies = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'modelFamilies' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms modelFamilies.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'modelFamilies' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         macintosh = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'platforms' -> 'modelFamilies' -> 'macintosh' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals platforms modelFamilies macintosh.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'platforms' -> 'modelFamilies' -> 'macintosh' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7fVisibility: public'
+        
+         name = 'macintosh'.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'platforms' -> () From: ( | {
+         'ModuleInfo: Module: hosts InitialContents: FollowSlot\x7
